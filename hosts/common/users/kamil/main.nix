@@ -5,14 +5,16 @@
   pkgs,
   ...
 }:
-
+let
+  ifGroupExits = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in 
 {
   users.users.kamil = {
     isNormalUser = true;
     description = "kamil";
     extraGroups = lib.flatten [
       "wheel"
-      (lib.custom.ifGroupsExits [
+      (ifGroupExits [
         "audio"
         "video"
         "docker"
