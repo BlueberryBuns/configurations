@@ -1,4 +1,4 @@
-{ 
+{
   inputs,
   config,
   lib,
@@ -6,12 +6,15 @@
   ...
 }:
 let
+  spec = config.hostSpec;
   ifGroupExits = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in 
 {
-  users.users.kamil = {
+  users.mutableUsers = true;
+  users.users.${spec.username} = {
     isNormalUser = true;
-    description = "kamil";
+    initialHashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
+
     extraGroups = lib.flatten [
       "wheel"
       (ifGroupExits [
@@ -25,4 +28,5 @@ in
   };
 
   programs.git.enable = true;
+
 }

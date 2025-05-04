@@ -19,10 +19,23 @@
       inputs.hardware.nixosModules.common-pc-ssd
 
       (map lib.custom.relativeToRoot [
-        "hosts/common/users/kamil/main.nix"
+        "hosts/common/required"
+        
+        "hosts/common/users/primary"
+        "hosts/common/users/primary/nixos.nix"
       ])
 
     ];
+
+  # ================== NEW NEW NEW ================
+
+  hostSpec = {
+    hostname = "aio";
+    username = "kamil";
+  };
+
+  # ================== END OF NEW ================
+  
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

@@ -12,9 +12,24 @@
       description = "The hostname of the unit";
     };
 
-    system = lib.mkOption {
+    platform = lib.mkOption {
       type = lib.types.enum [ "darwin" "nixos" ];
-      description = "The type of system for the deployment target";
+      description = "The type of platform for the deployment target, i.e. darwin / nixos";
+    };
+
+    username = lib.mkOption {
+      type = lib.types.str;
+      description = "The name of the main username of the host";
+    };
+
+    home = lib.mkOption {
+      type = lib.types.path;
+      description = "Home directory for specific user";
+      default =
+        let
+          user = config.hostSpec.username;
+        in 
+        if pkgs.stdenv.isLinux then "/home/${user}" else "/User/${user}";
     };
   };
 }
