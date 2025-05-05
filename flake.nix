@@ -20,6 +20,9 @@
     lib = nixpkgs.lib.extend (self: super: {custom = import ./lib { inherit (nixpkgs) lib; }; });
   in
   {
+  
+  overlays = import ./overlays { inherit inputs; };
+  
   # NixOS specific configurations
   nixosConfigurations = builtins.listToAttrs (
     map (host: {
@@ -27,7 +30,7 @@
       value = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs lib;
-          isDarwin = false;
+          systemVariation = "nixos";
         };
         modules = [ ./hosts/nixos/${host} ];
       };
@@ -42,7 +45,7 @@
   #    value = nix-darwin.lib.darwinSystem {
   #      specialArgs = {
   #        inherit inputs outputs lib;
-  #        isDarwin = true;
+  #        systemVariation = "darwin";
   #      };
   #      modules = [ ./hosts/nixos/${host} ];
   #    };
@@ -50,7 +53,6 @@
   # );
 
   formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-  # overlays = import ./overlays { inherit inputs; };
 
   };
   inputs = {
