@@ -4,8 +4,8 @@
 
 { 
   inputs,
-  lib,
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -32,15 +32,22 @@
   hostSpec = {
     hostname = "aio";
     username = "kamil";
+    platform = "nixos";
+  };
+
+  networking = {
+    networkmanager.enable = true;
+    enableIPv6 = false;
+  };
+
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
+    boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
   };
 
   # ================== END OF NEW ================
   
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
