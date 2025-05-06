@@ -1,60 +1,59 @@
 {
   description = "Nix package manager monorepo";
 
-  outputs = 
-  {
-    self,
-    nixpkgs,
-    # nix-darwin,
-    ...
-  } @ inputs:
-  let
-    inherit (self) outputs;
-  
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-      # "aarch64-linux"
-      # "aarch64-darwin"
-    ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      # nix-darwin,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
 
-    lib = nixpkgs.lib.extend (self: super: {custom = import ./lib { inherit (nixpkgs) lib; }; });
-  in
-  {
-  
-  overlays = import ./overlays { inherit inputs; };
-  
-  # NixOS specific configurations
-  nixosConfigurations = builtins.listToAttrs (
-    map (host: {
-      name = host;
-      value = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs lib;
-          systemVariation = "nixos";
-        };
-        modules = [ ./hosts/nixos/${host} ];
-      };
-    }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-  );
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        # "aarch64-linux"
+        # "aarch64-darwin"
+      ];
 
-  
-  # MacOS specific configurations
-  # darwinConfiguration = builtins.listToAttrs (
-  #  map (host: {
-  #    name = host;
-  #    value = nix-darwin.lib.darwinSystem {
-  #      specialArgs = {
-  #        inherit inputs outputs lib;
-  #        systemVariation = "darwin";
-  #      };
-  #      modules = [ ./hosts/nixos/${host} ];
-  #    };
-  #  }) (builtins.attrNames (builtins.readDir ./hosts/darwin))
-  # );
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+    in
+    {
 
-  formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      overlays = import ./overlays { inherit inputs; };
 
-  };
+      # NixOS specific configurations
+      nixosConfigurations = builtins.listToAttrs (
+        map (host: {
+          name = host;
+          value = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs lib;
+              systemVariation = "nixos";
+            };
+            modules = [ ./hosts/nixos/${host} ];
+          };
+        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+      );
+
+      # MacOS specific configurations
+      # darwinConfiguration = builtins.listToAttrs (
+      #  map (host: {
+      #    name = host;
+      #    value = nix-darwin.lib.darwinSystem {
+      #      specialArgs = {
+      #        inherit inputs outputs lib;
+      #        systemVariation = "darwin";
+      #      };
+      #      modules = [ ./hosts/nixos/${host} ];
+      #    };
+      #  }) (builtins.attrNames (builtins.readDir ./hosts/darwin))
+      # );
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
+    };
   inputs = {
     stylix.url = "github:danth/stylix/release-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";

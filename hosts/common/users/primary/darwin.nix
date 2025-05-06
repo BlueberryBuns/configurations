@@ -5,5 +5,5 @@ in
 {
   users.users.${spec.username} = {
     home = "/Users/${spec.username}";
-  }; 
+  };
 }

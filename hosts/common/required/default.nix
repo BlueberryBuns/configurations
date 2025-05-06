@@ -13,10 +13,9 @@
       "internal/host-spec.nix"
     ])
   ];
-  
+
   networking.hostName = config.hostSpec.hostname;
   environment.systemPackages = [ pkgs.openssh ];
-  
 
   #
   # ========== Overlays ==========

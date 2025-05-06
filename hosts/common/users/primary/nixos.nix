@@ -8,7 +8,7 @@
 let
   spec = config.hostSpec;
   ifGroupExits = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in 
+in
 {
   users.mutableUsers = true;
   users.users.${spec.username} = {

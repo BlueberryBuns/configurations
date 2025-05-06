@@ -18,7 +18,6 @@ in
 {
   default =
     final: prev:
-    
-    (stable-packages final prev)
-    // (unstable-packages final prev);
+
+    (stable-packages final prev) // (unstable-packages final prev);
 }

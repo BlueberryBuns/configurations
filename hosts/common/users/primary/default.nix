@@ -7,13 +7,14 @@
 }:
 let
   spec = config.hostSpec;
-in 
+in
 {
   users.users.${spec.username} = {
     name = spec.username;
-    
+
     inherit (spec)
-      home;
+      home
+      ;
   };
 
   programs.zsh.enable = true;

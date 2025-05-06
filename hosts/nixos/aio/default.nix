@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ 
+{
   inputs,
   config,
   lib,
@@ -11,21 +11,20 @@
 }:
 
 {
-  imports =
-    lib.flatten [      
-      ./hardware-configuration.nix
-      inputs.hardware.nixosModules.common-cpu-amd
-      inputs.hardware.nixosModules.common-gpu-intel
-      inputs.hardware.nixosModules.common-pc-ssd
+  imports = lib.flatten [
+    ./hardware-configuration.nix
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
 
-      (map lib.custom.relativeToRoot [
-        "hosts/common/required"
-        
-        "hosts/common/users/primary"
-        "hosts/common/users/primary/nixos.nix"
-      ])
+    (map lib.custom.relativeToRoot [
+      "hosts/common/required"
 
-    ];
+      "hosts/common/users/primary"
+      "hosts/common/users/primary/nixos.nix"
+    ])
+
+  ];
 
   # ================== NEW NEW NEW ================
 

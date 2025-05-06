@@ -13,7 +13,10 @@
     };
 
     platform = lib.mkOption {
-      type = lib.types.enum [ "darwin" "nixos" ];
+      type = lib.types.enum [
+        "darwin"
+        "nixos"
+      ];
       description = "The type of platform for the deployment target, i.e. darwin / nixos";
     };
 
@@ -28,7 +31,7 @@
       default =
         let
           user = config.hostSpec.username;
-        in 
+        in
         if pkgs.stdenv.isLinux then "/home/${user}" else "/User/${user}";
     };
   };
