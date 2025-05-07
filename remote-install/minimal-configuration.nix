@@ -8,11 +8,11 @@
 {
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
-      "modules/common/host-spec.nix"
-      "hosts/common/core/ssh.nix"
+      "internal/host-spec.nix"
+      "hosts/common/required/ssh.nix"
+      "hosts/common/users/bootstrap"
       "hosts/common/users/primary"
       "hosts/common/users/primary/nixos.nix"
-      "hosts/common/optional/minimal-user.nix"
     ])
   ];
 

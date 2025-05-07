@@ -11,6 +11,7 @@
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "internal/host-spec.nix"
+      "hosts/common/required/ssh.nix"
     ])
   ];
 
