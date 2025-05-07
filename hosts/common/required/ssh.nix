@@ -1,0 +1,13 @@
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
+{
+  programs.ssh = lib.optionalAttrs pkgs.stdenv.isLinux {
+    startAgent = true;
+  };
+}

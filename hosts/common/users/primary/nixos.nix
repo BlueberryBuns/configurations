@@ -11,22 +11,29 @@ let
 in
 {
   users.mutableUsers = true;
-  users.users.${spec.username} = {
-    isNormalUser = true;
-    initialHashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
+  users.users = {
+    ${spec.username} = {
+      isNormalUser = true;
+      initialHashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
 
-    extraGroups = lib.flatten [
-      "wheel"
-      (ifGroupExits [
-        "audio"
-        "video"
-        "docker"
-        "git"
-        "networkmanager"
-      ])
-    ];
+      extraGroups = lib.flatten [
+        "wheel"
+        (ifGroupExits [
+          "audio"
+          "video"
+          "docker"
+          "git"
+          "networkmanager"
+        ])
+      ];
+    };
+
+    root = {
+      shell = pkgs.zsh;
+      hashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
+    };
+
   };
 
   programs.git.enable = true;
-
 }
