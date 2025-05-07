@@ -10,12 +10,13 @@ let
   ifGroupExits = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  users.mutableUsers = true;
+  users.mutableUsers = false;
   users.users = {
     ${spec.username} = {
       isNormalUser = true;
-      initialHashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
+      hashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
 
+      shell = pkgs.zsh;
       extraGroups = lib.flatten [
         "wheel"
         (ifGroupExits [
@@ -26,11 +27,19 @@ in
           "networkmanager"
         ])
       ];
+
+      programs.zsh.enable = true;
+      environment.systemPackages = [
+        pkgs.just
+        pkgs.rsync
+      ];
+    
     };
 
     root = {
       shell = pkgs.zsh;
       hashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
+      openssh.authorizedKeys.keys = config.users.users.${hostSpec.username}.openssh.authorizedKeys.keys;
     };
 
   };
