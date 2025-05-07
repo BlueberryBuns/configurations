@@ -28,21 +28,16 @@ in
         ])
       ];
 
-      programs.zsh.enable = true;
-      environment.systemPackages = [
-        pkgs.just
-        pkgs.rsync
-      ];
-    
     };
 
     root = {
       shell = pkgs.zsh;
       hashedPassword = "$y$j9T$KoNEKfrUeX.HITNeGrQst1$J7JfKqilPXeiN6RuMOMK80hPy9aRVxDZ/YgKHrEbtf1";
-      openssh.authorizedKeys.keys = config.users.users.${hostSpec.username}.openssh.authorizedKeys.keys;
+      openssh.authorizedKeys.keys = config.users.users.${spec.username}.openssh.authorizedKeys.keys;
     };
 
   };
 
+  programs.zsh.enable = true;
   programs.git.enable = true;
 }
