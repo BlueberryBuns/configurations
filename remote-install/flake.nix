@@ -2,7 +2,8 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-24.11";
+    disko.url = "github:nix-community/disko";
   };
 
   outputs =
@@ -14,6 +15,8 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib.extend (self: super: { custom = import ../lib { inherit (nixpkgs) lib; }; });
+
+      minimalSpecialArgs = { inherit inputs outputs lib; };
       newConfig =
         name: disk: swapSize: useLuks: useImpermanence:
         (

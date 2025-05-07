@@ -17,7 +17,7 @@
   ];
 
   hostSpec = {
-    hostName = "installer";
+    hostname = "installer";
     username = "kamil";
   };
 
