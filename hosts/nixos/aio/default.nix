@@ -42,6 +42,7 @@
     hostname = "aio";
     username = "kamil";
     platform = "nixos";
+    persistFolder = "/persist";
   };
 
   networking = {
