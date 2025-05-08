@@ -25,6 +25,11 @@
       description = "The name of the main username of the host";
     };
 
+    persistFolder = lib.mkOption {
+      type = lib.types.str;
+      description = "Default value for persistent values in the drive";
+    };
+
     home = lib.mkOption {
       type = lib.types.path;
       description = "Home directory for specific user";

@@ -19,6 +19,7 @@
   hostSpec = {
     hostname = "installer";
     username = "kamil";
+    persistFolder = "/persist";
   };
 
   fileSystems."/boot".options = [ "umask=0077" ]; # Removes permissions and security warnings.

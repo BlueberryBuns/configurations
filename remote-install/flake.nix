@@ -31,7 +31,7 @@
               diskSpecPath
               {
                 _module.args = {
-                  inherit disk;
+                  device = disk;
                   withSwap = swapSize > 0;
                   swapSize = builtins.toString swapSize;
                 };

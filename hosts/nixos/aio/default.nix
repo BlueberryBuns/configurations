@@ -17,6 +17,16 @@
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
 
+    inputs.disko.nixosModules.disko
+    (lib.custom.relativeToRoot "hosts/common/disks/btrfs-impermanence.nix")
+    {
+      _module.args = {
+        device = "/dev/nvme0n1";
+        withSwap = true;
+        swapSize = 32;
+      };
+    }
+
     (map lib.custom.relativeToRoot [
       "hosts/common/required"
 
@@ -90,15 +100,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    neofetch
+    fastfetch
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
