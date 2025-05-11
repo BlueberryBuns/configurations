@@ -32,6 +32,8 @@
 
       "hosts/common/users/primary"
       "hosts/common/users/primary/nixos.nix"
+
+      "hosts/common/optional/hyprland.nix"
     ])
 
   ];
