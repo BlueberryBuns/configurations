@@ -41,3 +41,10 @@ in
   programs.zsh.enable = true;
   programs.git.enable = true;
 }
+// lib.optionalAttrs (inputs ? "home-manager") {
+  
+  home-manager.users.root = {
+    home.stateVersion = "24.11";
+    programs.zsh.enable = true;
+  };
+}

@@ -35,3 +35,29 @@ in
     pkgs.rsync
   ];
 }
+
+// lib.optionalAttrs (inputs ? "home-manager") {
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs pkgs;
+      hostSpec = spec;
+    };
+  
+    users.${spec.username}.imports = lib.flatten (
+      lib.optional (!spec.isMinimal) [
+        (
+          { config, ... }:
+          import (lib.custom.relativeToRoot "home/${spec.username}/${spec.hostname}.nix") {
+          hostSpec = spec;
+            inherit
+              pkgs
+              inputs
+              config
+              lib
+              ;
+          }
+        )
+      ]
+    );
+  };
+}

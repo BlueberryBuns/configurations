@@ -39,5 +39,12 @@
         in
         if pkgs.stdenv.isLinux then "/home/${user}" else "/User/${user}";
     };
+
+    isMinimal = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Specifies if user is designated for bootstrap usage";
+    };
+
   };
 }
