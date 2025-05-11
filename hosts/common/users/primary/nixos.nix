@@ -43,7 +43,7 @@ in
 }
 // lib.optionalAttrs (inputs ? "home-manager") {
   
-  home-manager.users.root = {
+  home-manager.users.root = lib.optionalAttrs (!spec.isMinimal) {
     home.stateVersion = "24.11";
     programs.zsh.enable = true;
   };

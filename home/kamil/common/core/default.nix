@@ -3,16 +3,14 @@
   config,
   pkgs, 
   lib,
+  ...
 }:
-let
-  inherit (hostSpec) platform;
-in 
+
 {
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "internal/host-spec.nix"
     ])
-    ./${platform}.nix
   ];
 
   inherit hostSpec;
@@ -27,7 +25,7 @@ in
     ];
   };
 
-  home.packages = [
+  home.packages = with pkgs; [
     fastfetch
     tree
     btop

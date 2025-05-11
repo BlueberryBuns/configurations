@@ -4,11 +4,14 @@
   config,
   lib,
   pkgs,
+  systemVariation,
   ...
 }:
-
 {
   imports = lib.flatten [
+    inputs.home-manager."${systemVariation}Modules".home-manager
+    inputs.sops-nix."${systemVariation}Modules".sops
+
     (map lib.custom.relativeToRoot [
       "internal/host-spec.nix"
       "hosts/common/required/ssh.nix"
@@ -16,7 +19,14 @@
   ];
 
   networking.hostName = config.hostSpec.hostname;
+
+  ### System wide package in case we need to log in as root (usually disabled)
   environment.systemPackages = [ pkgs.openssh ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    backupFileExtension = "hmbk";
+  };
 
   #
   # ========== Overlays ==========

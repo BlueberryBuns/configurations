@@ -40,7 +40,7 @@ in
   home-manager = {
     extraSpecialArgs = {
       inherit inputs pkgs;
-      hostSpec = spec;
+      inherit (config) hostSpec;
     };
   
     users.${spec.username}.imports = lib.flatten (
