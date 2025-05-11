@@ -32,7 +32,7 @@
       TERMINAL = "kitty";
       VISUAL = "vim";
       EDITOR = "vim";
-      # MANPAGER = "batman"; # see ./cli/bat.nix
+      MANPAGER = "batman";
     };
   };
 
@@ -40,6 +40,9 @@
     fastfetch
     tree
     btop
+    ripgrep
+    eza
+    fzf
   ];
 
     nix = {
