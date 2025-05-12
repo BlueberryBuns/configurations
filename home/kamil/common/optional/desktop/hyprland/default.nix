@@ -9,6 +9,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
+    package = pkgs.hyprland;
+
     systemd = {
       enable = true;
       variables = [ "--all" ]; # fix for https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
