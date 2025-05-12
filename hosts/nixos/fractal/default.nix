@@ -61,6 +61,13 @@
 
   hardware.graphics.enable = true;
 
+  stylix = {
+    enable = true;
+    image = lib.custom.relativeToRoot "assets/wallpappers/nix-gray.png";
+
+    polarity = "dark";
+  };
+
   # ================== END OF NEW ================
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
