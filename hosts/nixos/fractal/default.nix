@@ -16,6 +16,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.stylix.nixosModules.stylix
 
     inputs.disko.nixosModules.disko
     (lib.custom.relativeToRoot "hosts/common/disks/btrfs-impermanence.nix")
@@ -66,6 +67,7 @@
     image = lib.custom.relativeToRoot "assets/wallpappers/nix-gray.png";
 
     polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
   };
 
   # ================== END OF NEW ================
