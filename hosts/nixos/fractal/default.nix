@@ -32,6 +32,9 @@
 
       "hosts/common/users/primary"
       "hosts/common/users/primary/nixos.nix"
+
+      "hosts/common/optional/hyprland.nix"
+      "hosts/common/optional/greetd.nix"
     ])
 
   ];
@@ -55,6 +58,8 @@
     efi.canTouchEfiVariables = true;
     systemd-boot.enable = true;
   };
+
+  hardware.graphics.enable = true;
 
   # ================== END OF NEW ================
   # Configure network proxy if necessary

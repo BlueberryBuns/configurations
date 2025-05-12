@@ -11,6 +11,8 @@
     (map lib.custom.relativeToRoot [
       "internal/host-spec.nix"
     ])
+
+    ./cli
   ];
 
   inherit hostSpec;
@@ -23,12 +25,24 @@
     sessionPath = [
       "$HOME/.local/bin"
     ];
+
+    sessionVariables = {
+      SHELL = "zsh";
+      TERM = "kitty";
+      TERMINAL = "kitty";
+      VISUAL = "vim";
+      EDITOR = "vim";
+      MANPAGER = "batman";
+    };
   };
 
   home.packages = with pkgs; [
     fastfetch
     tree
     btop
+    ripgrep
+    eza
+    fzf
   ];
 
     nix = {
