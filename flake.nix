@@ -63,6 +63,7 @@
     nix-darwin-stable.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     hardware.url = "github:nixos/nixos-hardware";
+    ags.url = "github:aylur/ags";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
