@@ -2,8 +2,9 @@
 
 {
   imports = [
-    ./hyprland
-    ./rofi.nix
     ./ags
+    ./hyprland
+    
+    ./rofi.nix
   ];
 }
