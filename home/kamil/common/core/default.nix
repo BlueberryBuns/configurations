@@ -22,6 +22,8 @@
     username = lib.mkDefault config.hostSpec.username;
     homeDirectory = lib.mkDefault config.hostSpec.home;
     stateVersion = lib.mkDefault "24.11";
+    preferXdgDirectories = true;
+    
     sessionPath = [
       "$HOME/.local/bin"
     ];
@@ -33,6 +35,26 @@
       VISUAL = "vim";
       EDITOR = "vim";
       MANPAGER = "batman";
+    };
+  };
+  
+  xdg = {
+    enable = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+
+      desktop = "${config.homeDirectory}/.desktop";
+      documents = "${config.homeDirectory}/docs";
+      downloads = "${config.homeDirectory}/downloads";
+      desktop = "${config.homeDirectory}/media/audio";
+      pictures = "${config.homeDirectory}/media/pictures";
+      videos = "${config.homeDirectory}/media/video";
+    };
+
+    extraConfig = {
+      XDG_PUBLICSHARE_DIR = "/var/empty";
+      XDG_TEMPLATES_DIR = "/var/empty";
     };
   };
 
