@@ -44,17 +44,17 @@
       enable = true;
       createDirectories = true;
 
-      desktop = "${config.homeDirectory}/.desktop";
-      documents = "${config.homeDirectory}/docs";
-      downloads = "${config.homeDirectory}/downloads";
-      desktop = "${config.homeDirectory}/media/audio";
-      pictures = "${config.homeDirectory}/media/pictures";
-      videos = "${config.homeDirectory}/media/video";
-    };
+      desktop = "${config.home.homeDirectory}/.desktop";
+      documents = "${config.home.homeDirectory}/docs";
+      download = "${config.home.homeDirectory}/downloads";
+      music = "${config.home.homeDirectory}/media/audio";
+      pictures = "${config.home.homeDirectory}/media/pictures";
+      videos = "${config.home.homeDirectory}/media/video";
 
-    extraConfig = {
-      XDG_PUBLICSHARE_DIR = "/var/empty";
-      XDG_TEMPLATES_DIR = "/var/empty";
+      extraConfig = {
+        XDG_PUBLICSHARE_DIR = "/var/empty";
+        XDG_TEMPLATES_DIR = "/var/empty";
+      };
     };
   };
 
