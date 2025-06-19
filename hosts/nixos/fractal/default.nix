@@ -16,6 +16,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.stylix.nixosModules.stylix
 
     inputs.disko.nixosModules.disko
     (lib.custom.relativeToRoot "hosts/common/disks/btrfs-impermanence.nix")
@@ -61,6 +62,14 @@
 
   hardware.graphics.enable = true;
 
+  stylix = {
+    enable = true;
+    image = lib.custom.relativeToRoot "assets/wallpappers/nix-gray.png";
+
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+  };
+
   # ================== END OF NEW ================
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -88,7 +97,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -139,6 +148,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
