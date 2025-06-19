@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-intel
+    # inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.stylix.nixosModules.stylix
 
