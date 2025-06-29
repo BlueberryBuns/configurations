@@ -1,6 +1,11 @@
 { ... }:
 
 {
+  imports = [
+    ./lsp.nix
+    ./telescope.nix
+  ];
+
   programs.nvf = {
     enable = true;
     settings = {
