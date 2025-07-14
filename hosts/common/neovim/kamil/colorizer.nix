@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  programs.nvf.settings.vim..ui.colorizer = {
+  programs.nvf.settings.vim.ui.colorizer = {
     enable = true;
   };
 }
