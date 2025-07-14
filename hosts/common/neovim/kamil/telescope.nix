@@ -4,6 +4,11 @@
   programs.nvf.settings.vim.telescope = {
     enable = true;
 
+    setupOpts.defaults = {
+      color_devicons = true;
+      initial_mode = "normal";
+    };
+    
     extensions = [
       {
         name = "fzf";
