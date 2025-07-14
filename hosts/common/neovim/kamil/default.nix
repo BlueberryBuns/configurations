@@ -4,9 +4,11 @@
   imports = [
     ./colorizer.nix
     ./lsp.nix
+    ./lualine.nix
     ./telescope.nix
     ./treesitter.nix
     ./keymaps.nix
+    ./snacks.nix
     ./web-devicons.nix
   ];
 

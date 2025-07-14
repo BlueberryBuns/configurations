@@ -7,8 +7,10 @@
     setupOpts.defaults = {
       color_devicons = true;
       initial_mode = "normal";
+      border = true;
+      borderchars = [ "─" "│" "─" "│" "┌" "┐" "┘" "└" ];
     };
-    
+
     extensions = [
       {
         name = "fzf";
