@@ -5,6 +5,7 @@
     ./colorizer.nix
     ./lsp.nix
     ./telescope.nix
+    ./treesitter.nix
     ./keymaps.nix
     ./web-devicons.nix
   ];
@@ -17,12 +18,15 @@
       vim.lsp = {
         enable = true;
       };
+
       vim.options = {
         tabstop = 4;
         shiftwidth = 4;
         wrap = false;
       };
+
+      vim.ui.borders.enable = true;
+      vim.ui.borders.plugins.which-key.enable = true;
     };
-    
   };
 }
