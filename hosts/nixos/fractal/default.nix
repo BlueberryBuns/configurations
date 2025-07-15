@@ -69,7 +69,15 @@
     image = lib.custom.relativeToRoot "assets/wallpappers/nix-gray.png";
 
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    
+    fonts = {
+      monospace = { 
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
+      };
+   };
   };
 
   # ================== END OF NEW ================
