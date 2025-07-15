@@ -1,9 +1,0 @@
-{ pkgs, astal, ... }:
-let
-
-in
-{
-  
-
-}
-

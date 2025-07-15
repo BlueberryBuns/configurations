@@ -64,8 +64,8 @@
     nix-darwin-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     hardware.url = "github:nixos/nixos-hardware";
     
-    astal = {
-      url = "github:aylur/astal";
+    ags = {
+      url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
