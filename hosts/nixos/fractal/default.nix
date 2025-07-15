@@ -37,6 +37,7 @@
 
       "hosts/common/optional/hyprland.nix"
       "hosts/common/optional/greetd.nix"
+      "hosts/common/optional/nh.nix"
     ])
 
   ];
