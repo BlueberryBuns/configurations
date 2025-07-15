@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-intel
+    # inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.stylix.nixosModules.stylix
 
@@ -36,6 +37,7 @@
 
       "hosts/common/optional/hyprland.nix"
       "hosts/common/optional/greetd.nix"
+      "hosts/common/optional/nh.nix"
     ])
 
   ];
@@ -67,7 +69,15 @@
     image = lib.custom.relativeToRoot "assets/wallpappers/nix-gray.png";
 
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    
+    fonts = {
+      monospace = { 
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
+      };
+   };
   };
 
   # ================== END OF NEW ================

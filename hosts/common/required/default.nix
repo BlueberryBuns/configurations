@@ -15,6 +15,8 @@
     (map lib.custom.relativeToRoot [
       "internal/host-spec.nix"
       "hosts/common/required/ssh.nix"
+      "hosts/common/required/fonts.nix"
+      "hosts/common/neovim"
     ])
   ];
 
