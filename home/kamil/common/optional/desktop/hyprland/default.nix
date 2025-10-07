@@ -14,6 +14,11 @@
 
     package = pkgs.hyprland;
 
+    settings.monitor = [
+      "DP-1,preferred,-2160x-400,1,transform,1"
+      "HDMI-A-2,preferred,0x0,1"
+    ];
+
     systemd = {
       enable = true;
       variables = [ "--all" ]; # fix for https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal

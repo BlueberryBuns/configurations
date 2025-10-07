@@ -51,6 +51,14 @@
     persistFolder = "/persist";
   };
 
+  virtualisation.virtualbox = {
+    host.enable = true;
+  };
+
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+
+  users.extraGroups.vboxusers.members = [ "kamil" ];
+
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
@@ -107,7 +115,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
+  # services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -122,6 +130,8 @@
     #media-session.enable = true;
   };
 
+  
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -131,6 +141,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     fastfetch
+    pavucontrol
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

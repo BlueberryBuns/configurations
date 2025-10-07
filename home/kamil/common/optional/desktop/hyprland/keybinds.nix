@@ -12,14 +12,23 @@
       editor = config.home.sessionVariables.EDITOR;
     in
     [
-      "ALT,space,exec,rofi -show drun"
+      "CTRL,space,exec,rofi -show drun"
       "SHIFT_ALT,space,exec,rofi -show run"
       "SUPER,s,exec,rofi -show ssh"
       "ALT,tab,exec,rofi -show window"
 
       "ALT,Return,exec,${terminal}"
       "CTRL_ALT,v,exec,${terminal} ${editor}"
-    ];
+    ]
+    ++ (
+      builtins.concatLists (builtins.genList (i: 
+        let workspaceNumber = i + 1;
+        in [
+          "CTRL, code:1${toString i}, workspace, ${toString workspaceNumber}"
+          "SHIFT, code:1${toString i}, movetoworkspace, ${toString workspaceNumber}"
+        ])
+      9)
+    );
   };
 
 }
