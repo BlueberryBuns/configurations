@@ -54,6 +54,10 @@
   virtualisation.virtualbox = {
     host.enable = true;
   };
+  
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
 
@@ -64,7 +68,7 @@
     enableIPv6 = false;
   };
 
-  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+  boot.kernelPackages = pkgs.stable.linuxPackages_6_16;
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot.enable = true;
@@ -142,7 +146,23 @@
     wget
     fastfetch
     pavucontrol
+    unstable.signal-desktop
+    slack
+    keepassxc
+    (discord.override {
+        withVencord = true;
+    })
   ];
+
+  # ^^^^^^^^^^^^^^^^^ This one is fcked up
+  
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

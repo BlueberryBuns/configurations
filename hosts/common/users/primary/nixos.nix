@@ -25,6 +25,7 @@ in
           "docker"
           "git"
           "networkmanager"
+          "libvirtd"
         ])
       ];
 
@@ -40,6 +41,7 @@ in
 
   programs.zsh.enable = true;
   programs.git.enable = true;
+
 }
 // lib.optionalAttrs (inputs ? "home-manager") {
   
